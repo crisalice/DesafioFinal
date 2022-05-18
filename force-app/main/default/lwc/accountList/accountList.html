@@ -1,0 +1,35 @@
+<template>
+    <div class="slds-card slds-p-arround_x_small">
+        <lightning-card title="Lista clientes" icon-name="custom:custom60">
+            <div class="slds-m-horizontal_medium">
+                <div class="c-container">
+                    <lightning-layout multiple-rows>
+                        <template for:each={accounts.allDatas} for:item="cTemp">
+
+                            <lightning-layout-item 
+                                size="4"
+                                key={cTemp.Id}
+                                padding="arround-small">
+                                
+                                <c-account-card
+                                account={cTemp}
+                                class="slds-m-arround_x-small"
+                                onselected={handleAccountSelected}></c-account-card>
+
+                            </lightning-layout-item>
+
+                        </template>
+                    </lightning-layout>
+                </div>
+                <br/>
+                <hr/>
+                <c-paginator
+                    page-number={page}
+                    page-size={accounts.tamanhoPagina}
+                    total-item-count={accounts.totalItems}
+                    onprevious={handlePreviousPage}
+                    onnext={handleNextPage}></c-paginator>
+            </div>
+        </lightning-card>
+    </div>
+</template>
